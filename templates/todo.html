@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todo</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <div class="jumbotron">
+    <h1 style="color: brown;">This is todo app</h1>
+
+
+    <ul>
+
+        {%for todo_item in all_items %}
+        <li>
+            {{todo_item.content}}
+            <form action="/deletetodo/{{todo_item.id}}/" 
+            style="display:inline;"
+            method="post">{% csrf_token%}
+            <input type="submit" value="Delete">
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <form action="/addtodo/" method="POST">
+    {% csrf_token %}
+    <input type="text" name="content"/>
+    <input type="submit" value="Add"/>
+    </form>
+
+    </div>
+
+    
+
+       
+</body>
+</html>
